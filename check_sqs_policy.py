@@ -1,6 +1,5 @@
 import boto3
 import json
-import sys
 import io
 import argparse
 from botocore.exceptions import ClientError
