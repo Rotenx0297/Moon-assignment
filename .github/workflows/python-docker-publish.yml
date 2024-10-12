@@ -3,8 +3,7 @@ name: Build and Publish Docker Image containing a python script
 on:
   push:
     branches:
-      - main  
-  
+      - main
   # schedule:
   #   - cron: '0 6 * * *'
 
