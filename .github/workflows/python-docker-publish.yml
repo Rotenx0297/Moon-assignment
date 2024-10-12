@@ -53,4 +53,4 @@ jobs:
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
 
       - name: Run Docker container
-        run: docker run ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest --account_id ${{ vars.ACCOUNT_ID }} --role_to_assume ${{ vars.ROLE_TO_ASSUME }} --destination_bucket ${{ vars.DESTINATION_BUCKET }} --mode ${{ env.MODE }}
+        run: docker run ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest --account_id ${{ vars.ACCOUNT_ID }} --role_to_assume ${{ vars.ROLE_TO_ASSUME }} --destination_bucket ${{ vars.DESTINATION_BUCKET }} --mode ${{ vars.MODE }}
