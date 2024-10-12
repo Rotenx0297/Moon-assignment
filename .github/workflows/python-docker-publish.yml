@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-  # schedule:
-  #   - cron: '0 6 * * *'
+  schedule:
+    - cron: '0 6 * * *'
 
 jobs:
   build:
@@ -31,7 +31,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
-          # platforms: linux/amd64,linux/arm64     
       
       - name: Pull amd64 image
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
