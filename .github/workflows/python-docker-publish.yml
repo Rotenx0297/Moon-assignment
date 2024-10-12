@@ -32,13 +32,15 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
-          platforms: linux/arm64
+          platforms: linux/amd64,linux/arm64     
+      
+      - name: Pull amd64 image
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest --platform linux/amd64
 
       - name: Scan image for vulnerabilities
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
-          platforms: linux/arm64
 
   run_container:
     needs: build
@@ -52,7 +54,7 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Pull Docker image
-        run: docker pull ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest --platform linux/amd64
 
       - name: Run Docker container
         run: docker run ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest --account_id ${{ vars.ACCOUNT_ID }} --role_to_assume ${{ vars.ROLE_TO_ASSUME }} --destination_bucket ${{ vars.DESTINATION_BUCKET }} --mode ${{ vars.MODE }}
