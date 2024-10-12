@@ -1,4 +1,3 @@
-#FROM python:3.10-slim
 FROM rotenx0297/rotem-base:latest
 WORKDIR /app
 COPY . /app
