@@ -32,6 +32,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
+          platforms: linux/amd64
 
       - name: Scan image for vulnerabilities
         uses: aquasecurity/trivy-action@master
