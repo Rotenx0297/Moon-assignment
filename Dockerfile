@@ -1,4 +1,5 @@
-FROM python:3.10-slim
+#FROM python:3.10-slim
+FROM rotenx0297/rotem-base:latest
 WORKDIR /app
 COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
