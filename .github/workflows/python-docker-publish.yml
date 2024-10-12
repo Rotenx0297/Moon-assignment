@@ -38,6 +38,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
+          platforms: linux/arm64
 
   run_container:
     needs: build
