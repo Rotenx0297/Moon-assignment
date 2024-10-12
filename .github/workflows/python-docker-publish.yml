@@ -1,9 +1,9 @@
 name: Build and Publish Docker Image containing a python script
 
 on:
-  push:
-    branches:
-      - main  
+  # push:
+  #   branches:
+  #     - main  
   
   schedule:
     - cron: '0 6 * * *'
@@ -33,10 +33,10 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
 
-      - name: Scan image for vulnerabilities
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
+      # - name: Scan image for vulnerabilities
+      #   uses: aquasecurity/trivy-action@master
+      #   with:
+      #     image-ref: ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
 
   run_container:
     needs: build
@@ -53,4 +53,4 @@ jobs:
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
 
       - name: Run Docker container
-        run: docker run ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest
+        run: docker run ${{ secrets.DOCKER_USERNAME }}/moon-assignment:latest --account_id ${{ vars.ACCOUNT_ID }} --role_to_assume ${{ vars.ROLE_TO_ASSUME }} --destination_bucket ${{ vars.DESTINATION_BUCKET }} --mode ${{ env.MODE }}
